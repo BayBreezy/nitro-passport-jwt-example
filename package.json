@@ -1,0 +1,48 @@
+{
+  "name": "nitro-passport-jwt-example",
+  "private": false,
+  "description": "This repo serves as an example of how you can implement Passport.js with JWT in a Nitro API. For database operations, Prisma is used. The example uses PostgreSQL as the database but you can use any other database supported by Prisma.",
+  "author": {
+    "name": "Behon Baker",
+    "email": "behon.baker@yahoo.com",
+    "url": "https://behonbaker.com"
+  },
+  "scripts": {
+    "build": "npx dotenv-cli -- nitro build",
+    "dev": "nitro dev",
+    "format": "prettier --write .",
+    "prepare": "nitro prepare",
+    "preview": "npx --yes dotenv-cli -- node .output/server/index.mjs",
+    "prisma:push": "npx --yes prisma db push",
+    "prisma:seed": "npx --yes prisma db seed",
+    "prisma:studio": "npx --yes prisma studio",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.0.0",
+    "@prisma/client": "^5.19.1",
+    "bcryptjs": "^2.4.3",
+    "defu": "^6.1.4",
+    "dotenv": "^16.4.5",
+    "jsonwebtoken": "^9.0.2",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "prisma-extension-pagination": "^0.7.4",
+    "qs": "^6.13.0",
+    "yup": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/passport": "^1.0.16",
+    "@types/passport-jwt": "^4.0.1",
+    "@types/qs": "^6.9.15",
+    "nitropack": "latest",
+    "prettier": "^3.3.3",
+    "prisma": "^5.19.1",
+    "vitest": "^2.0.5"
+  },
+  "prisma": {
+    "seed": "npx --yes tsx prisma/seed.ts"
+  }
+}

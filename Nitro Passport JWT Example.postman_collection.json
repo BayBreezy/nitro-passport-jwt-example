@@ -1,0 +1,682 @@
+{
+  "info": {
+    "_postman_id": "a93cf9e9-1f8d-425f-931b-8f456168355d",
+    "name": "Nitro Passport JWT Example",
+    "description": "This collection is used in conjunction with the repo https://github.com/BayBreezy/nitro-passport-jwt-example.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "14276388"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Sign Up",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"{{$randomEmail}}\",\n    \"displayName\": \"{{$randomFullName}}\",\n    \"password\": \"P@$$w0rd123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}auth/signup",
+              "host": ["{{API_URL}}auth"],
+              "path": ["signup"]
+            },
+            "description": "### Signup\n\nThis endpoint allows users to sign up by providing their email, display name, and password.\n\n#### Request Body\n\n- email (string, required): The email address of the user.\n    \n- displayName (string, required): The display name of the user.\n    \n- password (string, required): The password for the user account.\n    \n\n#### Response\n\nThe response will be a JSON object with the following properties:\n\n- token (string): The authentication token for the user.\n    \n- user (object): An object containing user details with the following properties:\n    \n    - id (number): The unique identifier for the user.\n        \n    - createdAt (string): The date and time when the user account was created.\n        \n    - updatedAt (string): The date and time when the user account was last updated.\n        \n    - email (string): The email address of the user.\n        \n    - displayName (string): The display name of the user.\n        \n    - blocked (boolean): Indicates whether the user account is blocked.\n        \n\n#### Response JSON Schema\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"token\": { \"type\": \"string\" },\n    \"user\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"id\": { \"type\": \"number\" },\n        \"createdAt\": { \"type\": \"string\" },\n        \"updatedAt\": { \"type\": \"string\" },\n        \"email\": { \"type\": \"string\" },\n        \"displayName\": { \"type\": \"string\" },\n        \"blocked\": { \"type\": \"boolean\" }\n      }\n    }\n  }\n}\n\n ```"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"Danielle_Crooks@yahoo.com\",\n    \"displayName\": \"Carol Balistreri\",\n    \"password\": \"P@$$w0rd123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/api/auth/signup",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "3000",
+                  "path": ["api", "auth", "signup"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 06 Sep 2024 11:10:39 GMT"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "content-length",
+                  "value": "457"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiQXJjaGliYWxkNjdAeWFob28uY29tIiwiaWF0IjoxNzI1NjIxMDM5LCJleHAiOjE3MjYyMjU4MzksImlzcyI6Imh0dHBzOi8vd3d3LmV4YW1wbGUuY29tIn0.sRa0Rq_D5aWF1GDI7k2MB8HfwW_mVdtVOAeEGpMlJoU\",\n    \"user\": {\n        \"id\": 1,\n        \"createdAt\": \"2024-09-06T11:10:39.267Z\",\n        \"updatedAt\": \"2024-09-06T11:10:39.267Z\",\n        \"email\": \"Archibald67@yahoo.com\",\n        \"displayName\": \"Reginald Ratke\",\n        \"blocked\": false\n    }\n}"
+            },
+            {
+              "name": "Error - Validation",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"{{$randomEmail}}\",\n    \"password\": \"P@$$w0rd123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{API_URL}}auth/signup",
+                  "host": ["{{API_URL}}auth"],
+                  "path": ["signup"]
+                }
+              },
+              "status": "Validation Error",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 06 Sep 2024 11:11:15 GMT"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "content-length",
+                  "value": "724"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"url\": \"/api/auth/signup\",\n    \"statusCode\": 400,\n    \"statusMessage\": \"Validation Error\",\n    \"message\": \"Display Name is a required field\",\n    \"stack\": [\n        \"at createError (./node_modules/h3/dist/index.mjs:78:15)\",\n        \"at createValidationError (./node_modules/h3/dist/index.mjs:244:9)\",\n        \"at validateData (./node_modules/h3/dist/index.mjs:240:11)\",\n        \"at readValidatedBody (./node_modules/h3/dist/index.mjs:454:10)\",\n        \"at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\",\n        \"at async handler (./.nitro/dev/index.mjs:946:18)\",\n        \"at async _callHandler (./node_modules/h3/dist/index.mjs:1834:16)\",\n        \"at async Object.handler (./node_modules/h3/dist/index.mjs:1975:19)\",\n        \"at async Server.toNodeHandle (./node_modules/h3/dist/index.mjs:2266:7)\"\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"kristian_rohan@hotmail.com\",\n    \"password\": \"P@$$w0rd123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}auth/login",
+              "host": ["{{API_URL}}auth"],
+              "path": ["login"]
+            },
+            "description": "### Login\n\nThis endpoint is used to authenticate a user by providing their email and password.\n\n#### Request Body\n\n- `email` (string, required): The email of the user.\n    \n- `password` (string, required): The password of the user.\n    \n\n#### Response\n\nThe response will contain a token for authentication and user details including:\n\n- `token` (string): The authentication token.\n    \n- `user` (object):\n    \n    - `id` (integer): The user ID.\n        \n    - `createdAt` (string): The date and time when the user was created.\n        \n    - `updatedAt` (string): The date and time when the user was last updated.\n        \n    - `email` (string): The email of the user.\n        \n    - `displayName` (string): The display name of the user.\n        \n    - `blocked` (boolean): Indicates if the user is blocked."
+          },
+          "response": [
+            {
+              "name": "Error - Validation",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/api/auth/login",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "3000",
+                  "path": ["api", "auth", "login"]
+                }
+              },
+              "status": "Validation Error",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 06 Sep 2024 11:15:33 GMT"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "content-length",
+                  "value": "719"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"url\": \"/api/auth/login\",\n    \"statusCode\": 400,\n    \"statusMessage\": \"Validation Error\",\n    \"message\": \"Password is a required field\",\n    \"stack\": [\n        \"at createError (./node_modules/h3/dist/index.mjs:78:15)\",\n        \"at createValidationError (./node_modules/h3/dist/index.mjs:244:9)\",\n        \"at validateData (./node_modules/h3/dist/index.mjs:240:11)\",\n        \"at readValidatedBody (./node_modules/h3/dist/index.mjs:454:10)\",\n        \"at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\",\n        \"at async handler (./.nitro/dev/index.mjs:943:18)\",\n        \"at async _callHandler (./node_modules/h3/dist/index.mjs:1834:16)\",\n        \"at async Object.handler (./node_modules/h3/dist/index.mjs:1975:19)\",\n        \"at async Server.toNodeHandle (./node_modules/h3/dist/index.mjs:2266:7)\"\n    ]\n}"
+            },
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"corrine63@gmail.com\",\n    \"password\": \"P@$$w0rd123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{API_URL}}auth/login",
+                  "host": ["{{API_URL}}auth"],
+                  "path": ["login"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 06 Sep 2024 11:18:28 GMT"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "content-length",
+                  "value": "456"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImVtYWlsIjoiY29ycmluZTYzQGdtYWlsLmNvbSIsImlhdCI6MTcyNTYyMTUwOCwiZXhwIjoxNzI2MjI2MzA4LCJpc3MiOiJodHRwczovL3d3dy5leGFtcGxlLmNvbSJ9.oDhhkkv0lcFStB91jSW9zGxyh68RkocHoOJyg1OmcoM\",\n    \"user\": {\n        \"id\": 4,\n        \"createdAt\": \"2024-09-06T11:17:21.273Z\",\n        \"updatedAt\": \"2024-09-06T11:17:21.273Z\",\n        \"email\": \"corrine63@gmail.com\",\n        \"displayName\": \"Patti Reynolds PhD\",\n        \"blocked\": false\n    }\n}"
+            },
+            {
+              "name": "Error - Blocked",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"corrine63@gmail.com\",\n    \"password\": \"P@$$w0rd123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{API_URL}}auth/login",
+                  "host": ["{{API_URL}}auth"],
+                  "path": ["login"]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 06 Sep 2024 11:18:58 GMT"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "content-length",
+                  "value": "411"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"url\": \"/api/auth/login\",\n    \"statusCode\": 403,\n    \"statusMessage\": \"\",\n    \"message\": \"User is blocked\",\n    \"stack\": [\n        \"at createError (./node_modules/h3/dist/index.mjs:78:15)\",\n        \"at handler (./.nitro/dev/index.mjs:952:13)\",\n        \"at async _callHandler (./node_modules/h3/dist/index.mjs:1834:16)\",\n        \"at async Object.handler (./node_modules/h3/dist/index.mjs:1975:19)\",\n        \"at async Server.toNodeHandle (./node_modules/h3/dist/index.mjs:2266:7)\"\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Me",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImVtYWlsIjoiY29ycmluZTYzQGdtYWlsLmNvbSIsImlhdCI6MTcyNTYyMTU2NSwiZXhwIjoxNzI2MjI2MzY1LCJpc3MiOiJodHRwczovL3d3dy5leGFtcGxlLmNvbSJ9.AAso51pUy5tr7puvudz_q9NbQrVy-YYnf0gl4pF6cCA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{API_URL}}auth/me",
+              "host": ["{{API_URL}}auth"],
+              "path": ["me"]
+            },
+            "description": "### Get User Profile\n\nThis endpoint retrieves the authenticated user's profile information.\n\n#### Request\n\n- Method: GET\n    \n- URL: `{{API_URL}}auth/me`\n    \n\n#### Response\n\nThe response will be a JSON object with the following schema:\n\n``` json\n{\n  \"user\": {\n    \"id\": 0,\n    \"createdAt\": \"\",\n    \"updatedAt\": \"\",\n    \"email\": \"\",\n    \"displayName\": \"\",\n    \"blocked\": true\n  }\n}\n\n ```\n\nThe `user` object contains the profile information including `id`, `createdAt`, `updatedAt`, `email`, `displayName`, and `blocked` status."
+          },
+          "response": [
+            {
+              "name": "Error -No Token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/api/auth/me",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "3000",
+                  "path": ["api", "auth", "me"]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "plain",
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Fri, 06 Sep 2024 11:25:03 GMT"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "content-length",
+                  "value": "12"
+                }
+              ],
+              "cookie": [],
+              "body": "Unauthorized"
+            },
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{API_URL}}auth/me",
+                  "host": ["{{API_URL}}auth"],
+                  "path": ["me"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 06 Sep 2024 11:56:28 GMT"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "content-length",
+                  "value": "220"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"user\": {\n        \"id\": 4,\n        \"createdAt\": \"2024-09-06T11:17:21.273Z\",\n        \"updatedAt\": \"2024-09-06T11:56:24.953Z\",\n        \"email\": \"corrine63@gmail.com\",\n        \"displayName\": \"Patti Reynolds PhD\",\n        \"blocked\": false\n    }\n}"
+            }
+          ]
+        }
+      ],
+      "description": "This folder holds all authentication related requests."
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Find All",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{API_URL}}users?limit=&page=&search=&orderBy=createdAt=desc",
+              "host": ["{{API_URL}}users"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": ""
+                },
+                {
+                  "key": "page",
+                  "value": ""
+                },
+                {
+                  "key": "search",
+                  "value": ""
+                },
+                {
+                  "key": "orderBy",
+                  "value": "createdAt=desc"
+                }
+              ]
+            },
+            "description": "### Get Users\n\nThis endpoint retrieves a list of users based on the provided query parameters.\n\n#### Request Parameters\n\n- `limit` (optional): The limit of users to be returned.\n    \n- `page` (optional): The page number for paginated results.\n    \n- `search` (optional): The search keyword for filtering users.\n    \n- `orderBy` (optional): The field to order the results by. This value will be parsed by the qs library. Adding something like `createdAt=desc` will result in an object of `{ createdAt: \"desc\" }` on the backend.\n    \n\n#### Response Body\n\nThe response will contain an array of user objects under the `results` key, where each user object includes the following attributes:\n\n- `id`: The unique identifier of the user.\n    \n- `email`: The email address of the user.\n    \n- `displayName`: The display name of the user.\n    \n- `createdAt`: The date and time when the user was created.\n    \n- `updatedAt`: The date and time when the user was last updated.\n    \n- `blocked`: A boolean indicating whether the user is blocked.\n    \n\nAdditionally, the response includes a `meta` object with the following properties:\n\n- `isFirstPage`: A boolean indicating if the current page is the first page.\n    \n- `isLastPage`: A boolean indicating if the current page is the last page.\n    \n- `currentPage`: The current page number.\n    \n- `previousPage`: The number of the previous page, if available.\n    \n- `nextPage`: The number of the next page, if available.\n    \n- `pageCount`: The total number of pages.\n    \n- `totalCount`: The total count of users.\n    \n\n#### Example Response\n\n``` json\n{\n    \"results\": [\n        {\n            \"id\": 0,\n            \"email\": \"\",\n            \"displayName\": \"\",\n            \"createdAt\": \"\",\n            \"updatedAt\": \"\",\n            \"blocked\": true\n        }\n    ],\n    \"meta\": {\n        \"isFirstPage\": true,\n        \"isLastPage\": true,\n        \"currentPage\": 0,\n        \"previousPage\": null,\n        \"nextPage\": null,\n        \"pageCount\": 0,\n        \"totalCount\": 0\n    }\n}\n\n ```"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/api/users?limit=&page=&search=&orderBy=createdAt=desc",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "3000",
+                  "path": ["api", "users"],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": ""
+                    },
+                    {
+                      "key": "page",
+                      "value": ""
+                    },
+                    {
+                      "key": "search",
+                      "value": ""
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "createdAt=desc"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 06 Sep 2024 13:06:56 GMT"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "content-length",
+                  "value": "660"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"results\": [\n        {\n            \"id\": 4,\n            \"email\": \"corrine63@gmail.com\",\n            \"displayName\": \"Patti Reynolds PhD\",\n            \"createdAt\": \"2024-09-06T11:17:21.273Z\",\n            \"updatedAt\": \"2024-09-06T11:56:24.953Z\",\n            \"blocked\": false\n        },\n        {\n            \"id\": 3,\n            \"email\": \"porter_oberbrunner33@gmail.com\",\n            \"displayName\": \"Marshall Ankunding\",\n            \"createdAt\": \"2024-09-06T11:17:18.173Z\",\n            \"updatedAt\": \"2024-09-06T11:17:18.173Z\",\n            \"blocked\": false\n        }\n    ],\n    \"meta\": {\n        \"isFirstPage\": true,\n        \"isLastPage\": true,\n        \"currentPage\": 1,\n        \"previousPage\": null,\n        \"nextPage\": null,\n        \"pageCount\": 1,\n        \"totalCount\": 2\n    }\n}"
+            },
+            {
+              "name": "Error - Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{API_URL}}users?limit=&page=&search=&orderBy=createdAt=desc",
+                  "host": ["{{API_URL}}users"],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": ""
+                    },
+                    {
+                      "key": "page",
+                      "value": ""
+                    },
+                    {
+                      "key": "search",
+                      "value": ""
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "createdAt=desc"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "plain",
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Fri, 06 Sep 2024 13:08:15 GMT"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "content-length",
+                  "value": "12"
+                }
+              ],
+              "cookie": [],
+              "body": "Unauthorized"
+            }
+          ]
+        },
+        {
+          "name": "Find By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{API_URL}}users/120",
+              "host": ["{{API_URL}}users"],
+              "path": ["120"]
+            },
+            "description": "### Find By ID\n\nThis endpoint retrieves the user details based on the provided user ID.\n\n### Response\n\nThe response will be a JSON object with the following schema:\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"id\": {\n            \"type\": \"number\"\n        },\n        \"createdAt\": {\n            \"type\": \"string\"\n        },\n        \"updatedAt\": {\n            \"type\": \"string\"\n        },\n        \"email\": {\n            \"type\": \"string\"\n        },\n        \"displayName\": {\n            \"type\": \"string\"\n        },\n        \"blocked\": {\n            \"type\": \"boolean\"\n        }\n    }\n}\n\n ```"
+          },
+          "response": [
+            {
+              "name": "Error - Not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/api/users/1",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "3000",
+                  "path": ["api", "users", "1"]
+                }
+              },
+              "status": "User not found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 06 Sep 2024 13:32:48 GMT"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "content-length",
+                  "value": "99"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"url\": \"/api/users/1\",\n    \"statusCode\": 404,\n    \"statusMessage\": \"User not found\",\n    \"message\": \"User not found\"\n}"
+            },
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{API_URL}}users/120",
+                  "host": ["{{API_URL}}users"],
+                  "path": ["120"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 06 Sep 2024 13:34:00 GMT"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "content-length",
+                  "value": "194"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 120,\n    \"createdAt\": \"2024-09-06T13:20:12.052Z\",\n    \"updatedAt\": \"2024-09-06T13:20:12.052Z\",\n    \"email\": \"avery.nikolaus@gmail.com\",\n    \"displayName\": \"Hannah Rippin\",\n    \"blocked\": false\n}"
+            },
+            {
+              "name": "Error - Not authorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{API_URL}}users/120",
+                  "host": ["{{API_URL}}users"],
+                  "path": ["120"]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "plain",
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Fri, 06 Sep 2024 13:34:12 GMT"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "content-length",
+                  "value": "12"
+                }
+              ],
+              "cookie": [],
+              "body": "Unauthorized"
+            }
+          ]
+        }
+      ],
+      "description": "This folder holds all user related requests."
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEwMywiZW1haWwiOiJrcmlzdGlhbl9yb2hhbkBob3RtYWlsLmNvbSIsImlhdCI6MTcyNTYyOTAyMiwiZXhwIjoxNzI2MjMzODIyLCJpc3MiOiJodHRwczovL3d3dy5leGFtcGxlLmNvbSJ9.Wu8y95BpE4A-CxB1uygiGq6ahSQJ1ZJXdJvfhC4tGfc",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "API_URL",
+      "value": "http://localhost:3000/api/",
+      "type": "string"
+    }
+  ]
+}
