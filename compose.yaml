@@ -2,20 +2,22 @@ services:
   postgres:
     image: postgres
     restart: always
-    env_file:
-      - .env
+    networks:
+      - nitro
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER?The POSTGRES_USER environment variable is required.}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD?The POSTGRES_PASSWORD environment variable is required.}
+      POSTGRES_DB: ${POSTGRES_DB?The POSTGRES_DB environment variable is required.}
     ports:
       - "5433:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
-    networks:
-      - nitro-network
 
   adminer:
     image: adminer
-    restart: always
     networks:
-      - nitro-network
+      - nitro
+    restart: always
     depends_on:
       - postgres
     ports:
@@ -24,14 +26,21 @@ services:
   nitro-app:
     image: nitro-app
     networks:
-      - nitro-network
+      - nitro
     build: .
     depends_on:
       - postgres
     ports:
-      - "3000:3000"
-    env_file:
-      - .env
+      - "${PORT:-3000}:${PORT:-3000}"
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?schema=public
+      JWT_SECRET: ${JWT_SECRET?The JWT_SECRET environment variable is required.}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${PORT:-3000}/"]
+      interval: 3600s
+      timeout: 10s
+      retries: 3
+      start_period: 10s # Wait 10s before starting the first health check
     command: >
       sh -c "
         npx prisma db push &&
@@ -42,4 +51,4 @@ volumes:
   postgres-data:
 
 networks:
-  nitro-network:
+  nitro:
