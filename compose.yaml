@@ -1,0 +1,45 @@
+services:
+  postgres:
+    image: postgres
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - nitro-network
+
+  adminer:
+    image: adminer
+    restart: always
+    networks:
+      - nitro-network
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080
+
+  nitro-app:
+    image: nitro-app
+    networks:
+      - nitro-network
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    command: >
+      sh -c "
+        npx prisma db push &&
+        node .output/server/index.mjs
+      "
+
+volumes:
+  postgres-data:
+
+networks:
+  nitro-network:
