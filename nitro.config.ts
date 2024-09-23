@@ -4,4 +4,5 @@ export default defineNitroConfig({
   imports: {
     dirs: ["./server/services"],
   },
+  serverAssets: [{ baseName: "templates", dir: "./templates" }],
 });
