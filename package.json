@@ -37,7 +37,7 @@
     "@types/jsonwebtoken": "^9.0.7",
     "@types/passport": "^1.0.17",
     "@types/passport-jwt": "^4.0.1",
-    "@types/qs": "^6.9.16",
+    "@types/qs": "^6.9.17",
     "nitropack": "latest",
     "prettier": "^3.3.3",
     "prisma": "^5.22.0",
