@@ -29,7 +29,7 @@
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "prisma-extension-pagination": "^0.7.4",
-    "qs": "^6.13.0",
+    "qs": "^6.13.1",
     "yup": "^1.4.0"
   },
   "devDependencies": {
