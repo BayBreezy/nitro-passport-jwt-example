@@ -21,14 +21,14 @@
   },
   "dependencies": {
     "@faker-js/faker": "^9.2.0",
-    "@prisma/client": "^5.22.0",
+    "@prisma/client": "^6.0.1",
     "bcryptjs": "^2.4.3",
     "defu": "^6.1.4",
     "dotenv": "^16.4.5",
     "jsonwebtoken": "^9.0.2",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
-    "prisma-extension-pagination": "^0.7.4",
+    "prisma-extension-pagination": "^0.7.5",
     "qs": "^6.13.1",
     "yup": "^1.4.0"
   },
@@ -39,9 +39,9 @@
     "@types/passport-jwt": "^4.0.1",
     "@types/qs": "^6.9.17",
     "nitropack": "latest",
-    "prettier": "^3.3.3",
-    "prisma": "^5.22.0",
-    "vitest": "^2.1.5"
+    "prettier": "^3.4.1",
+    "prisma": "^6.0.1",
+    "vitest": "^2.1.8"
   },
   "prisma": {
     "seed": "npx --yes tsx prisma/seed.ts"
