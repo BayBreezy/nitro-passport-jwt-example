@@ -41,7 +41,7 @@
     "nitropack": "latest",
     "prettier": "^3.3.3",
     "prisma": "^5.22.0",
-    "vitest": "^2.1.5"
+    "vitest": "^2.1.6"
   },
   "prisma": {
     "seed": "npx --yes tsx prisma/seed.ts"
