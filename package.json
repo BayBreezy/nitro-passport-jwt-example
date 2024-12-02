@@ -39,7 +39,7 @@
     "@types/passport-jwt": "^4.0.1",
     "@types/qs": "^6.9.17",
     "nitropack": "latest",
-    "prettier": "^3.3.3",
+    "prettier": "^3.4.1",
     "prisma": "^5.22.0",
     "vitest": "^2.1.5"
   },
