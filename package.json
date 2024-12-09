@@ -24,7 +24,7 @@
     "@prisma/client": "^6.0.1",
     "bcryptjs": "^2.4.3",
     "defu": "^6.1.4",
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.4.7",
     "jsonwebtoken": "^9.0.2",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
