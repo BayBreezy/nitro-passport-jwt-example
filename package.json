@@ -40,7 +40,7 @@
     "@types/qs": "^6.9.17",
     "nitropack": "latest",
     "prettier": "^3.4.2",
-    "prisma": "^6.1.0",
+    "prisma": "^6.2.1",
     "vitest": "^2.1.8"
   },
   "prisma": {
