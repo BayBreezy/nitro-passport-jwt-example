@@ -36,19 +36,21 @@ services:
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?schema=public
       JWT_SECRET: ${JWT_SECRET?The JWT_SECRET environment variable is required.}
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:${PORT:-3000}/"]
+      test: [ "CMD", "curl", "-f", "http://localhost:${PORT:-3000}/" ]
       interval: 3600s
       timeout: 10s
       retries: 3
       start_period: 10s # Wait 10s before starting the first health check
     command: >
       sh -c "
+        sleep 10 &&
         npx prisma db push &&
         node .output/server/index.mjs
       "
 
 volumes:
   postgres-data:
+
 
 networks:
   nitro:
