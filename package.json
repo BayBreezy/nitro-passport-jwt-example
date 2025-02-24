@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@faker-js/faker": "^9.4.0",
-    "@prisma/client": "^6.3.0",
+    "@prisma/client": "^6.4.1",
     "bcryptjs": "^2.4.3",
     "defu": "^6.1.4",
     "dotenv": "^16.4.7",
